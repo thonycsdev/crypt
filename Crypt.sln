@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.API", "Crypt.API\Crypt.API.csproj", "{0AB70FA9-F243-42C8-9F35-8FE7D4C71E13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.Repository", "Crypt.Repository\Crypt.Repository.csproj", "{3055242C-8C36-4D55-B6C5-B588AC2D7F34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.CrossCutting", "Crypt.CrossCutting\Crypt.CrossCutting.csproj", "{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{0AB70FA9-F243-42C8-9F35-8FE7D4C71E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AB70FA9-F243-42C8-9F35-8FE7D4C71E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AB70FA9-F243-42C8-9F35-8FE7D4C71E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3055242C-8C36-4D55-B6C5-B588AC2D7F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3055242C-8C36-4D55-B6C5-B588AC2D7F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3055242C-8C36-4D55-B6C5-B588AC2D7F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3055242C-8C36-4D55-B6C5-B588AC2D7F34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
