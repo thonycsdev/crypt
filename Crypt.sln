@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.CrossCutting", "Crypt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.Domain", "Crypt.Domain\Crypt.Domain.csproj", "{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.Tests", "Crypt.Tests\Crypt.Tests.csproj", "{B7A414DE-0548-4749-9CD1-C32120438ED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.Service", "Crypt.Service\Crypt.Service.csproj", "{94FE4D5B-E96A-4360-8C74-7FE861EB4170}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A414DE-0548-4749-9CD1-C32120438ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A414DE-0548-4749-9CD1-C32120438ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A414DE-0548-4749-9CD1-C32120438ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A414DE-0548-4749-9CD1-C32120438ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FE4D5B-E96A-4360-8C74-7FE861EB4170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FE4D5B-E96A-4360-8C74-7FE861EB4170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FE4D5B-E96A-4360-8C74-7FE861EB4170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FE4D5B-E96A-4360-8C74-7FE861EB4170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
