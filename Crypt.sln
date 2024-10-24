@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.Repository", "Crypt.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.CrossCutting", "Crypt.CrossCutting\Crypt.CrossCutting.csproj", "{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypt.Domain", "Crypt.Domain\Crypt.Domain.csproj", "{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48B58452-19B8-4CB8-BAA8-EB631EDB4FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F6E0D3-ADF0-4926-9C75-B54120B4CCEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
