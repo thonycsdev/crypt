@@ -29,7 +29,7 @@ namespace Crypt.Service.Services
 
             for (int i = 0; i < data.Length; i++)
             {
-                sBuilder.Append(data[i].ToString("X"));
+                sBuilder.Append(data[i].ToString("X2"));
             }
 
             return sBuilder.ToString();

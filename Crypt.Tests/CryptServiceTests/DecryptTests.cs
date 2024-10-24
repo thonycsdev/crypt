@@ -21,7 +21,6 @@ namespace Crypt.Tests.CryptServiceTests
         public void ShouldReturnADiferentStringFromThatWasInputed()
         {
             string cardNumber = faker.Finance.CreditCardNumber().ToString();
-            Console.WriteLine(cardNumber);
             ICryptService service = new CryptService();
             string result = service.Hash(cardNumber);
             result.Should().NotBe(cardNumber);
@@ -36,6 +35,22 @@ namespace Crypt.Tests.CryptServiceTests
             string result2 = service.Hash(cardNumber);
             result1.Length.Should().Be(result2.Length);
             result1.Should().Be(result2);
+        }
+
+        [Fact]
+        public void AnyHashingShouldHavingTheSameLengthNoMatterTheInput()
+        {
+            string cardNumber = faker.Finance.CreditCardNumber().ToString();
+            ICryptService service = new CryptService();
+            int lenght = service.Hash(cardNumber).Length;
+
+            for (int i = 0; i < 50; i++)
+            {
+                string newCardNumber = faker.Finance.CreditCardNumber().ToString();
+                string result = service.Hash(newCardNumber);
+                Console.WriteLine(result);
+                result.Length.Should().Be(lenght);
+            }
         }
     }
 }
