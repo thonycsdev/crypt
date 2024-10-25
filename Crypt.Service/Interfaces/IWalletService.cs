@@ -1,13 +1,13 @@
-using Crypt.Domain;
+using Crypt.Service.DTO;
 
 namespace Crypt.Service.Interfaces
 {
     public interface IWalletService
     {
-        Task<Wallet> CreateWallet(Wallet wallet);
-        Task<Wallet> UpdateWallet(long id, Wallet wallet);
-        Task<Wallet> GetWalletById(long id);
+        Task<WalletResponseDTO> CreateWallet(WalletRequestDTO wallet);
+        Task<WalletResponseDTO> UpdateWallet(long id, WalletRequestDTO wallet);
+        Task<WalletResponseDTO> GetWalletById(long id);
         Task DeleteWallet(long id);
-        Task<IEnumerable<Wallet>> GetAllWallets();
+        Task<IEnumerable<WalletResponseDTO>> GetAllWallets();
     }
 }

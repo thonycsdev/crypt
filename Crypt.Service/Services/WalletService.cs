@@ -1,5 +1,5 @@
-using Crypt.Domain;
 using Crypt.Repository.Interfaces;
+using Crypt.Service.DTO;
 using Crypt.Service.Interfaces;
 
 namespace Crypt.Service.Services
@@ -8,7 +8,7 @@ namespace Crypt.Service.Services
     {
         public WalletService(IWalletRepository _repository, ICryptService _cryptService) { }
 
-        public Task<Wallet> CreateWallet(Wallet wallet)
+        public Task<WalletResponseDTO> CreateWallet(WalletRequestDTO wallet)
         {
             throw new NotImplementedException();
         }
@@ -18,17 +18,17 @@ namespace Crypt.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Wallet>> GetAllWallets()
+        public Task<IEnumerable<WalletResponseDTO>> GetAllWallets()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Wallet> GetWalletById(long id)
+        public Task<WalletResponseDTO> GetWalletById(long id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Wallet> UpdateWallet(long id, Wallet wallet)
+        public Task<WalletResponseDTO> UpdateWallet(long id, WalletRequestDTO wallet)
         {
             throw new NotImplementedException();
         }
