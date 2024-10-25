@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Crypt.Domain\Crypt.Domain.csproj" />
+    <ProjectReference Include="..\Crypt.Repository\Crypt.Repository.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
