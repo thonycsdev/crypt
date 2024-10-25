@@ -48,7 +48,6 @@ namespace Crypt.Tests.CryptServiceTests
             {
                 string newCardNumber = faker.Finance.CreditCardNumber().ToString();
                 string result = service.Hash(newCardNumber);
-                Console.WriteLine(result);
                 result.Length.Should().Be(lenght);
             }
         }

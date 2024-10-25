@@ -10,15 +10,19 @@ namespace Crypt.Repository.Repositories
     public class WalletRepository : IWalletRepository
     {
         private readonly DbSet<Wallet> _dbSet;
+        private readonly DataContext _context;
 
         public WalletRepository(DataContext context)
         {
             _dbSet = context.Set<Wallet>();
+            _context = context;
         }
 
-        public Task<Wallet> CreateWallet(Wallet wallet)
+        public async Task<Wallet> CreateWallet(Wallet wallet)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(wallet);
+            await _context.SaveChangesAsync();
+            return wallet;
         }
 
         public Task DeleteCreditCard(long id)
