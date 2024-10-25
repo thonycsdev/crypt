@@ -45,9 +45,12 @@ namespace Crypt.Repository.Repositories
             return wallets;
         }
 
-        public Task<Wallet> GetSingle(Expression<Func<Wallet, bool>> predicate)
+        public async Task<Wallet> GetSingle(Expression<Func<Wallet, bool>> predicate)
         {
-            throw new NotImplementedException();
+            Wallet? wallet = await _entity.Where(predicate).FirstOrDefaultAsync();
+            if (wallet is null)
+                throw new Exception("Wallet id not found in database");
+            return wallet;
         }
 
         public Task<Wallet> UpdateWallet(long id, Wallet wallet)
