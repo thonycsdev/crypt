@@ -39,9 +39,10 @@ namespace Crypt.Repository.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Wallet>> GetMany(Expression<Func<Wallet, bool>> predicate)
+        public async Task<IEnumerable<Wallet>> GetMany(Expression<Func<Wallet, bool>> predicate)
         {
-            throw new NotImplementedException();
+            IEnumerable<Wallet> wallets = await _entity.Where(predicate).ToListAsync();
+            return wallets;
         }
 
         public Task<Wallet> GetSingle(Expression<Func<Wallet, bool>> predicate)
