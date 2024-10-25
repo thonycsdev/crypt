@@ -53,9 +53,11 @@ namespace Crypt.Repository.Repositories
             return wallet;
         }
 
-        public Task<Wallet> UpdateWallet(long id, Wallet wallet)
+        public async Task<Wallet> UpdateWallet(Wallet wallet)
         {
-            throw new NotImplementedException();
+            _entity.Update(wallet);
+            await _context.SaveChangesAsync();
+            return wallet;
         }
     }
 }
