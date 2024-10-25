@@ -9,18 +9,18 @@ namespace Crypt.Repository.Repositories
 {
     public class WalletRepository : IWalletRepository
     {
-        private readonly DbSet<Wallet> _dbSet;
         private readonly DataContext _context;
+        private readonly DbSet<Wallet> _entity;
 
         public WalletRepository(DataContext context)
         {
-            _dbSet = context.Set<Wallet>();
             _context = context;
+            _entity = _context.Wallets!;
         }
 
         public async Task<Wallet> CreateWallet(Wallet wallet)
         {
-            await _dbSet.AddAsync(wallet);
+            await _entity.AddAsync(wallet);
             await _context.SaveChangesAsync();
             return wallet;
         }
@@ -30,9 +30,13 @@ namespace Crypt.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteWallet(long id)
+        public async Task DeleteWallet(long id)
         {
-            throw new NotImplementedException();
+            Wallet? walletToDelete = await _entity.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (walletToDelete is null)
+                throw new Exception("Wallet id not found in database");
+            _entity.Remove(walletToDelete);
+            await _context.SaveChangesAsync();
         }
 
         public Task<IEnumerable<Wallet>> GetMany(Expression<Func<Wallet, bool>> predicate)
