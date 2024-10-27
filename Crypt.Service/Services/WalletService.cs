@@ -41,9 +41,11 @@ namespace Crypt.Service.Services
             return response;
         }
 
-        public Task DeleteWallet(long id)
+        public async Task DeleteWallet(long id)
         {
-            throw new NotImplementedException();
+            if (id.Equals(0))
+                throw new ArgumentNullException("Id not provided");
+            await _repository.DeleteWallet(id);
         }
 
         public Task<IEnumerable<WalletResponseDTO>> GetAllWallets()
@@ -56,9 +58,13 @@ namespace Crypt.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<WalletResponseDTO> UpdateWallet(long id, WalletRequestDTO wallet)
+        public async Task<WalletResponseDTO> UpdateWallet(long id, WalletRequestDTO wallet)
         {
-            throw new NotImplementedException();
+            if (id.Equals(0))
+                throw new ArgumentNullException("Id not provided");
+
+            var entity = await _repository.GetSingle(e => e.Id == id);
+            return new WalletResponseDTO();
         }
     }
 }

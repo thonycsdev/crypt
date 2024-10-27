@@ -1,8 +1,6 @@
 using System.Linq.Expressions;
-
 using Crypt.Domain;
 using Crypt.Repository.Interfaces;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Repository.Repositories
@@ -49,7 +47,7 @@ namespace Crypt.Repository.Repositories
         {
             Wallet? wallet = await _entity.Where(predicate).FirstOrDefaultAsync();
             if (wallet is null)
-                throw new Exception("Wallet id not found in database");
+                throw new Exception("Entity not found!");
             return wallet;
         }
 
