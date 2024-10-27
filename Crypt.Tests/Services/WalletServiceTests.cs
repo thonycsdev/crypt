@@ -41,5 +41,14 @@ namespace Crypt.Tests.Services
 
             result.CreditCardNumber.Should().Be(wallet.CreditCardNumber);
         }
+
+        [Fact]
+        public void ShouldThrowAnErrorWhenNoIdOrId0IsProvidedForDeletion()
+        {
+            var service = new WalletService(_walletMockRepository, _cryptService);
+            long id = 0;
+            var action = async () => await service.DeleteWallet(id);
+            action.Should().ThrowAsync<Exception>("Id not provided");
+        }
     }
 }
