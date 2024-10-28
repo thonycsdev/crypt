@@ -20,6 +20,11 @@ namespace Crypt.Repository.Repositories
 
         public async Task<Wallet> CreateWallet(Wallet wallet)
         {
+            if (
+                string.IsNullOrEmpty(wallet.UserDocument)
+                || string.IsNullOrEmpty(wallet.CreditCardNumber)
+            )
+                throw new ArgumentException("Invalid entity attribute");
             await _entity.AddAsync(wallet);
             await _context.SaveChangesAsync();
             return wallet;

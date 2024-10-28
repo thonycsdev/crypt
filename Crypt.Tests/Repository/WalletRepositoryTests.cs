@@ -115,5 +115,45 @@ namespace Crypt.Tests.Repository
                 results.ToArray().Length.Should().Be(amount);
             }
         }
+
+        [Fact]
+        public async Task ShouldIncreaseTheLenghtBy1WhenCreateWalletIsCalled()
+        {
+            using (var ctx = new InMemoryDatabaseContext().Create())
+            {
+                var fixture = _fixture.Create<Wallet>();
+                var repository = new WalletRepository(ctx);
+                await repository.CreateWallet(fixture);
+
+                var databaseResults = await ctx.Wallets!.ToListAsync();
+                databaseResults.ToArray().Length.Should().Be(1);
+            }
+        }
+
+        [Fact]
+        public async Task ShouldThrowAnErrorWhenTheWalletHasUserDocumentAsEmpty()
+        {
+            using (var ctx = new InMemoryDatabaseContext().Create())
+            {
+                var fixture = _fixture.Create<Wallet>();
+                fixture.UserDocument = "";
+                var repository = new WalletRepository(ctx);
+                Func<Task> action = async () => await repository.CreateWallet(fixture);
+                await action.Should().ThrowAsync<ArgumentException>("Invalid entity attribute");
+            }
+        }
+
+        [Fact]
+        public async Task ShouldThrowAnErrorWhenTheWalletHasCreditCardNumberAsEmpty()
+        {
+            using (var ctx = new InMemoryDatabaseContext().Create())
+            {
+                var fixture = _fixture.Create<Wallet>();
+                fixture.CreditCardNumber = "";
+                var repository = new WalletRepository(ctx);
+                Func<Task> action = async () => await repository.CreateWallet(fixture);
+                await action.Should().ThrowAsync<ArgumentException>("Invalid entity attribute");
+            }
+        }
     }
 }
