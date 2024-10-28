@@ -1,4 +1,5 @@
 using AutoFixture;
+
 using Crypt.Domain;
 using Crypt.Service.Interfaces;
 using Crypt.Service.Services;
@@ -16,13 +17,13 @@ namespace Crypt.Tests.CryptServiceTests
         {
             ICryptService service = new CryptService();
             var entity = fixture.Create<Wallet>();
-            var card = entity.CreditCardNumber;
-            var document = entity.UserDocument;
+            var card = entity.CreditCard.CreditCardNumber;
+            var document = entity.Document.UserDocument;
 
             service.HashWalletInformation(ref entity);
 
-            entity.CreditCardNumber.Should().NotBe(card);
-            entity.UserDocument.Should().NotBe(document);
+            entity.CreditCard.CreditCardNumber.Should().NotBe(card);
+            entity.Document.UserDocument.Should().NotBe(document);
         }
 
         [Fact]

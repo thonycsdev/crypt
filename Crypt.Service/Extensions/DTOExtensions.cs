@@ -11,8 +11,8 @@ namespace Crypt.Service.Extensions
             {
                 Id = entity.Id,
                 Value = entity.Value,
-                CreditCardNumber = entity.CreditCardNumber,
-                UserDocument = entity.UserDocument,
+                CreditCardNumber = entity.CreditCard.CreditCardNumber,
+                UserDocument = entity.Document.UserDocument,
             };
 
             return response;

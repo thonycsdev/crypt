@@ -3,8 +3,8 @@ namespace Crypt.Domain
     public class Wallet
     {
         public long Id { get; set; }
-        public string UserDocument { get; set; } = string.Empty;
-        public string CreditCardNumber { get; set; } = string.Empty;
+        public Document Document { get; set; } = new();
+        public CreditCard CreditCard { get; set; } = new();
         public long Value { get; set; }
     }
 }

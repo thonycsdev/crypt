@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+
 using Crypt.Domain;
 using Crypt.Service.Extensions;
 using Crypt.Service.Interfaces;
@@ -15,7 +16,8 @@ namespace Crypt.Service.Services
             if (string.IsNullOrEmpty(data))
                 throw new Exception("Empty Input");
 
-            using (SHA512 sha512 = SHA512.Create())
+            var key = Encoding.ASCII.GetBytes("Anthony");
+            using (var sha512 = new HMACSHA512(key))
             {
                 byte[] bytes = data.ToBytes();
                 var result = sha512.ComputeHash(bytes);
@@ -25,8 +27,8 @@ namespace Crypt.Service.Services
 
         public void HashWalletInformation(ref Wallet wallet)
         {
-            wallet.CreditCardNumber = this.Hash(wallet.CreditCardNumber);
-            wallet.UserDocument = this.Hash(wallet.UserDocument);
+            wallet.CreditCard!.CreditCardNumber = this.Hash(wallet.CreditCard.CreditCardNumber);
+            wallet.Document!.UserDocument = this.Hash(wallet.Document.UserDocument);
         }
 
         private string MakeReadable(byte[] data)

@@ -1,7 +1,9 @@
 using AutoFixture;
+
 using Crypt.Domain;
 using Crypt.Repository.Repositories;
 using Crypt.Tests.Fixtures;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Tests.Repository
@@ -22,7 +24,7 @@ namespace Crypt.Tests.Repository
 
                 var entity = await repository.GetSingle(e => e.Id == result.Entity.Id);
                 entity.Should().NotBeNull();
-                entity.UserDocument.Should().Be(fixture.UserDocument);
+                entity.Document.UserDocument.Should().Be(fixture.Document.UserDocument);
             }
         }
 
@@ -134,7 +136,7 @@ namespace Crypt.Tests.Repository
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
                 var fixture = _fixture.Create<Wallet>();
-                fixture.UserDocument = "";
+                fixture.Document.UserDocument = "";
                 var repository = new WalletRepository(ctx);
                 Func<Task> action = async () => await repository.CreateWallet(fixture);
                 await action.Should().ThrowAsync<ArgumentException>("Invalid entity attribute");
@@ -147,7 +149,7 @@ namespace Crypt.Tests.Repository
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
                 var fixture = _fixture.Create<Wallet>();
-                fixture.CreditCardNumber = "";
+                fixture.CreditCard.CreditCardNumber = "";
                 var repository = new WalletRepository(ctx);
                 Func<Task> action = async () => await repository.CreateWallet(fixture);
                 await action.Should().ThrowAsync<ArgumentException>("Invalid entity attribute");
