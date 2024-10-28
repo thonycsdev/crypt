@@ -9,10 +9,9 @@ namespace Crupt.API.Controllers
         public CreditCardController() { }
 
         [HttpGet]
-        public string[] GetStrings()
+        public string GetStrings()
         {
-            var name = Environment.GetEnvironmentVariable("NAME");
-            return [name!];
+            return "Anthony";
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Crypt.Repository.Repositories
 
         public async Task<Wallet> CreateWallet(Wallet wallet)
         {
+            if (
+                string.IsNullOrEmpty(wallet.UserDocument)
+                || string.IsNullOrEmpty(wallet.CreditCardNumber)
+            )
+                throw new ArgumentException("Invalid entity attribute");
             await _entity.AddAsync(wallet);
             await _context.SaveChangesAsync();
             return wallet;
@@ -32,24 +37,29 @@ namespace Crypt.Repository.Repositories
 
         public async Task DeleteWallet(long id)
         {
-            Wallet? walletToDelete = await _entity.Where(x => x.Id == id).FirstOrDefaultAsync();
+            Wallet? walletToDelete = await this.GetSingle(e => e.Id == id);
             if (walletToDelete is null)
                 throw new Exception("Wallet id not found in database");
             _entity.Remove(walletToDelete);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Wallet>> GetMany(Expression<Func<Wallet, bool>> predicate)
+        public async Task<IEnumerable<Wallet>> GetMany(
+            Expression<Func<Wallet, bool>>? predicate = null
+        )
         {
-            IEnumerable<Wallet> wallets = await _entity.Where(predicate).ToListAsync();
-            return wallets;
+            if (predicate is not null)
+            {
+                return await _entity.Where(predicate).ToListAsync();
+            }
+            return await _entity.ToListAsync();
         }
 
         public async Task<Wallet> GetSingle(Expression<Func<Wallet, bool>> predicate)
         {
             Wallet? wallet = await _entity.Where(predicate).FirstOrDefaultAsync();
             if (wallet is null)
-                throw new Exception("Wallet id not found in database");
+                throw new Exception("Entity not found!");
             return wallet;
         }
 
