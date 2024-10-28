@@ -30,7 +30,7 @@ namespace Crypt.Repository.Repositories
 
         public async Task DeleteWallet(long id)
         {
-            Wallet? walletToDelete = await _entity.Where(x => x.Id == id).FirstOrDefaultAsync();
+            Wallet? walletToDelete = await this.GetSingle(e => e.Id == id);
             if (walletToDelete is null)
                 throw new Exception("Wallet id not found in database");
             _entity.Remove(walletToDelete);
