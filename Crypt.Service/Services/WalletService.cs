@@ -1,4 +1,3 @@
-using Crypt.Domain;
 using Crypt.Repository.Interfaces;
 using Crypt.Service.DTO;
 using Crypt.Service.Extensions;

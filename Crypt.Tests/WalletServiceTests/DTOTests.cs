@@ -25,8 +25,8 @@ namespace Crypt.Tests.WalletServiceTests
             {
                 Wallet entity = r.ToEntity();
                 entity.Value.Should().Be(r.Value);
-                entity.CreditCardNumber.Should().Be(r.CreditCardNumber);
-                entity.UserDocument.Should().Be(r.UserDocument);
+                entity.CreditCard.CreditCardNumber.Should().Be(r.CreditCardNumber);
+                entity.Document.UserDocument.Should().Be(r.UserDocument);
             });
         }
 
@@ -45,8 +45,8 @@ namespace Crypt.Tests.WalletServiceTests
                 WalletResponseDTO response = e.ToResponse();
                 response.Id.Should().Be(e.Id);
                 response.Value.Should().Be(e.Value);
-                response.CreditCardNumber.Should().Be(e.CreditCardNumber);
-                response.UserDocument.Should().Be(e.UserDocument);
+                response.CreditCardNumber.Should().Be(e.CreditCard.CreditCardNumber);
+                response.UserDocument.Should().Be(e.Document.UserDocument);
             });
         }
     }

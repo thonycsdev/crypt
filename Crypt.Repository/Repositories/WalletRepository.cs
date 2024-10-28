@@ -1,8 +1,6 @@
 using System.Linq.Expressions;
-
 using Crypt.Domain;
 using Crypt.Repository.Interfaces;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Repository.Repositories
@@ -21,8 +19,8 @@ namespace Crypt.Repository.Repositories
         public async Task<Wallet> CreateWallet(Wallet wallet)
         {
             if (
-                string.IsNullOrEmpty(wallet.UserDocument)
-                || string.IsNullOrEmpty(wallet.CreditCardNumber)
+                string.IsNullOrEmpty(wallet.Document.UserDocument)
+                || string.IsNullOrEmpty(wallet.CreditCard.CreditCardNumber)
             )
                 throw new ArgumentException("Invalid entity attribute");
             await _entity.AddAsync(wallet);

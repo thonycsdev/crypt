@@ -12,8 +12,8 @@ namespace Crypt.Service.DTO
         {
             var entity = new Wallet
             {
-                UserDocument = this.UserDocument,
-                CreditCardNumber = this.CreditCardNumber,
+                Document = new Document { UserDocument = this.UserDocument },
+                CreditCard = new CreditCard { CreditCardNumber = this.CreditCardNumber },
                 Value = this.Value,
             };
             return entity;
