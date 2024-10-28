@@ -1,6 +1,8 @@
 using System.Linq.Expressions;
+
 using Crypt.Domain;
 using Crypt.Repository.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Repository.Repositories
@@ -37,10 +39,15 @@ namespace Crypt.Repository.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Wallet>> GetMany(Expression<Func<Wallet, bool>> predicate)
+        public async Task<IEnumerable<Wallet>> GetMany(
+            Expression<Func<Wallet, bool>>? predicate = null
+        )
         {
-            IEnumerable<Wallet> wallets = await _entity.Where(predicate).ToListAsync();
-            return wallets;
+            if (predicate is not null)
+            {
+                return await _entity.Where(predicate).ToListAsync();
+            }
+            return await _entity.ToListAsync();
         }
 
         public async Task<Wallet> GetSingle(Expression<Func<Wallet, bool>> predicate)

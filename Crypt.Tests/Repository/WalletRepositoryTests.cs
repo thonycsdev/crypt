@@ -1,7 +1,9 @@
 using AutoFixture;
+
 using Crypt.Domain;
 using Crypt.Repository.Repositories;
 using Crypt.Tests.Fixtures;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Tests.Repository
@@ -11,7 +13,7 @@ namespace Crypt.Tests.Repository
         private readonly Fixture _fixture = BaseTests.CreateFixture();
 
         [Fact]
-        public async void GetSingleShouldReturnAEntityInsertedInTheDatabase()
+        public async Task GetSingleShouldReturnAEntityInsertedInTheDatabase()
         {
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
@@ -27,7 +29,7 @@ namespace Crypt.Tests.Repository
         }
 
         [Fact]
-        public async void WhenNoEntityIsFoundShouldThrowAnError()
+        public async Task WhenNoEntityIsFoundShouldThrowAnError()
         {
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
@@ -41,7 +43,7 @@ namespace Crypt.Tests.Repository
         }
 
         [Fact]
-        public async void GetSingleShouldThrowAnErrorWhenNoPredicateIsProvided()
+        public async Task GetSingleShouldThrowAnErrorWhenNoPredicateIsProvided()
         {
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
@@ -54,7 +56,7 @@ namespace Crypt.Tests.Repository
         }
 
         [Fact]
-        public async void ShouldDeleteEntityWhenProvidedIdExistsInDatabase()
+        public async Task ShouldDeleteEntityWhenProvidedIdExistsInDatabase()
         {
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
@@ -72,7 +74,7 @@ namespace Crypt.Tests.Repository
         }
 
         [Fact]
-        public async void WhenNoEntityIsFoundWithThisIdShouldThrowAnId()
+        public async Task WhenNoEntityIsFoundWithThisIdShouldThrowAnId()
         {
             using (var ctx = new InMemoryDatabaseContext().Create())
             {
@@ -82,6 +84,35 @@ namespace Crypt.Tests.Repository
                 Func<Task> action = async () => await repository.DeleteWallet(fixture.Id);
 
                 await action.Should().ThrowAsync<Exception>("Entity not found!");
+            }
+        }
+
+        [Fact]
+        public async Task GetManyShouldAlwaysReturnAArrayEvenWithLengthZero()
+        {
+            using (var ctx = new InMemoryDatabaseContext().Create())
+            {
+                var repository = new WalletRepository(ctx);
+                var results = await repository.GetMany();
+                results.ToArray().Length.Should().Be(0);
+            }
+        }
+
+        [Fact]
+        public async Task ShouldReturnTheAmountOfWalletInsertedInTheDatabase()
+        {
+            using (var ctx = new InMemoryDatabaseContext().Create())
+            {
+                int amount = 5;
+                for (int i = 0; i < amount; i++)
+                {
+                    var fixture = _fixture.Create<Wallet>();
+                    await ctx.AddAsync(fixture);
+                    await ctx.SaveChangesAsync();
+                }
+                var repository = new WalletRepository(ctx);
+                var results = await repository.GetMany();
+                results.ToArray().Length.Should().Be(amount);
             }
         }
     }
