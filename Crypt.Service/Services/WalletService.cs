@@ -1,6 +1,7 @@
 using Crypt.Domain;
 using Crypt.Repository.Interfaces;
 using Crypt.Service.DTO;
+using Crypt.Service.Extensions;
 using Crypt.Service.Interfaces;
 
 namespace Crypt.Service.Services
@@ -18,25 +19,13 @@ namespace Crypt.Service.Services
 
         public async Task<WalletResponseDTO> CreateWallet(WalletRequestDTO request)
         {
-            var entity = new Wallet
-            {
-                CreditCardNumber = request.CreditCardNumber,
-                Value = request.Value,
-                UserDocument = request.UserDocument,
-            };
+            var entity = request.ToEntity();
 
-            entity.CreditCardNumber = _cryptService.Hash(entity.CreditCardNumber);
-            entity.UserDocument = _cryptService.Hash(entity.UserDocument);
+            _cryptService.HashWalletInformation(ref entity);
 
             var result = await _repository.CreateWallet(entity);
 
-            var response = new WalletResponseDTO
-            {
-                Id = result.Id,
-                UserDocument = result.UserDocument,
-                Value = result.Value,
-                CreditCardNumber = result.CreditCardNumber,
-            };
+            var response = result.ToResponse();
 
             return response;
         }
@@ -48,14 +37,17 @@ namespace Crypt.Service.Services
             await _repository.DeleteWallet(id);
         }
 
-        public Task<IEnumerable<WalletResponseDTO>> GetAllWallets()
+        public async Task<IEnumerable<WalletResponseDTO>> GetAllWallets()
         {
-            throw new NotImplementedException();
+            var result = await _repository.GetMany();
+            var responses = result.Select(e => e.ToResponse());
+            return responses;
         }
 
-        public Task<WalletResponseDTO> GetWalletById(long id)
+        public async Task<WalletResponseDTO> GetWalletById(long id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetSingle(e => e.Id == id);
+            return entity.ToResponse();
         }
 
         public async Task<WalletResponseDTO> UpdateWallet(long id, WalletRequestDTO wallet)
