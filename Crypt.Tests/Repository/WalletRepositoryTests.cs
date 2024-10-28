@@ -1,9 +1,7 @@
 using AutoFixture;
-
 using Crypt.Domain;
 using Crypt.Repository.Repositories;
 using Crypt.Tests.Fixtures;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Tests.Repository
