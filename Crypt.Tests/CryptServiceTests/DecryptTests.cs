@@ -1,13 +1,29 @@
+using AutoFixture;
+using Crypt.Domain;
 using Crypt.Service.Interfaces;
 using Crypt.Service.Services;
+using Crypt.Tests.Fixtures;
 
 namespace Crypt.Tests.CryptServiceTests
 {
     public class DecryptTest
     {
         public Faker faker = new Faker();
+        public Fixture fixture = BaseTests.CreateFixture();
 
-        public DecryptTest() { }
+        [Fact]
+        public void ShouldHashTheWalletInformationCorrectly()
+        {
+            ICryptService service = new CryptService();
+            var entity = fixture.Create<Wallet>();
+            var card = entity.CreditCardNumber;
+            var document = entity.UserDocument;
+
+            service.HashWalletInformation(ref entity);
+
+            entity.CreditCardNumber.Should().NotBe(card);
+            entity.UserDocument.Should().NotBe(document);
+        }
 
         [Fact]
         public void ShouldThrowAnErrorWhenNoDataIsPassedToTheFunction()

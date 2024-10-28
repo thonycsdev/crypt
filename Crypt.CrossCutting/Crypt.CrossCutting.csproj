@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Crypt.Repository\Crypt.Repository.csproj" />
+    <ProjectReference Include="..\Crypt.Service\Crypt.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

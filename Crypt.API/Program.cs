@@ -1,3 +1,5 @@
+using Crypt.CrossCutting.Injections;
+
 //Change if the enviroment changes
 DotNetEnv.Env.Load("../.env.development");
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.InjectDB();
+builder.Services.AddRepositories();
+builder.Services.AddServices();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 

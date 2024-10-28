@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-
+using Crypt.Domain;
 using Crypt.Service.Extensions;
 using Crypt.Service.Interfaces;
 
@@ -21,6 +21,12 @@ namespace Crypt.Service.Services
                 var result = sha512.ComputeHash(bytes);
                 return MakeReadable(result);
             }
+        }
+
+        public void HashWalletInformation(ref Wallet wallet)
+        {
+            wallet.CreditCardNumber = this.Hash(wallet.CreditCardNumber);
+            wallet.UserDocument = this.Hash(wallet.UserDocument);
         }
 
         private string MakeReadable(byte[] data)
