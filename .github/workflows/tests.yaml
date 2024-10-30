@@ -1,0 +1,16 @@
+name: Automated Tests
+
+on: pull_request
+
+jobs:
+  xunit:
+    name: XUnit Testing Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xt0rted/setup-dotnet@v1.0.0
+        with:
+          dotnet-version: 8.0.110
+
+      - run: dotnet restore
+      - run: dotnet run --property WarningLevel=0 --project ./Crypt.Tests
