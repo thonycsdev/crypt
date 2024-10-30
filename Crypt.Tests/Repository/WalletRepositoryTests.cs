@@ -24,7 +24,7 @@ namespace Crypt.Tests.Repository
 
                 var entity = await repository.GetSingle(e => e.Id == result.Entity.Id);
                 entity.Should().NotBeNull();
-                entity.Document.UserDocument.Should().NotBe(fixture.Document.UserDocument);
+                entity.Document.UserDocument.Should().Be(fixture.Document.UserDocument);
             }
         }
 
