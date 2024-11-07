@@ -21,6 +21,8 @@ namespace Crypt.Service.Services
             var entity = request.ToEntity();
 
             _cryptService.HashWalletInformation(ref entity);
+            entity.CreditCard.CreditCardNumber = request.CreditCardNumber;
+            entity.Document.UserDocument = request.CreditCardNumber;
 
             var result = await _repository.CreateWallet(entity);
 
@@ -39,6 +41,8 @@ namespace Crypt.Service.Services
         public async Task<IEnumerable<WalletResponseDTO>> GetAllWallets()
         {
             var result = await _repository.GetMany();
+            var result_json = System.Text.Json.JsonSerializer.Serialize(result);
+            Console.WriteLine(result_json);
             var responses = result.Select(e => e.ToResponse());
             return responses;
         }

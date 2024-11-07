@@ -27,8 +27,8 @@ namespace Crypt.Service.Services
 
         public void HashWalletInformation(ref Wallet wallet)
         {
-            wallet.CreditCard!.CreditCardNumber = this.Hash(wallet.CreditCard.CreditCardNumber);
-            wallet.Document!.UserDocument = this.Hash(wallet.Document.UserDocument);
+            wallet.CreditCard!.CreditCardNumberHash = this.Hash(wallet.CreditCard.CreditCardNumber);
+            wallet.Document!.UserDocumentHash = this.Hash(wallet.Document.UserDocument);
         }
 
         private string MakeReadable(byte[] data)

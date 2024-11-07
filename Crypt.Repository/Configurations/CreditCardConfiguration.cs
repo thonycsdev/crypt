@@ -1,5 +1,4 @@
 using Crypt.Domain;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,7 +8,7 @@ namespace Crypt.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<CreditCard> builder)
         {
-            builder.HasKey(x => x.CreditCardNumberHash);
+            builder.HasKey(x => x.Id);
         }
     }
 }

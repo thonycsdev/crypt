@@ -1,6 +1,8 @@
 using System.Linq.Expressions;
+
 using Crypt.Domain;
 using Crypt.Repository.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Crypt.Repository.Repositories
@@ -48,9 +50,13 @@ namespace Crypt.Repository.Repositories
         {
             if (predicate is not null)
             {
-                return await _entity.Where(predicate).ToListAsync();
+                return await _entity
+                    .Where(predicate)
+                    .Include(x => x.Document)
+                    .Include(x => x.CreditCard)
+                    .ToListAsync();
             }
-            return await _entity.ToListAsync();
+            return await _entity.Include(x => x.Document).Include(x => x.CreditCard).ToListAsync();
         }
 
         public async Task<Wallet> GetSingle(Expression<Func<Wallet, bool>> predicate)
