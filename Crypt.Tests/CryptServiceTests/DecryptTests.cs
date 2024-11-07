@@ -22,8 +22,8 @@ namespace Crypt.Tests.CryptServiceTests
 
             service.HashWalletInformation(ref entity);
 
-            entity.CreditCard.CreditCardNumber.Should().NotBe(card);
-            entity.Document.UserDocument.Should().NotBe(document);
+            entity.CreditCard.CreditCardNumberHash.Should().NotBe(card);
+            entity.Document.UserDocumentHash.Should().NotBe(document);
         }
 
         [Fact]
