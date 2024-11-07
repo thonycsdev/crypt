@@ -13,6 +13,8 @@ namespace Crypt.Service.Extensions
                 Value = entity.Value,
                 CreditCardNumber = entity.CreditCard.CreditCardNumber,
                 UserDocument = entity.Document.UserDocument,
+                CreditCardNumberHash = entity.CreditCard.CreditCardNumberHash,
+                UserDocumentHash = entity.Document.UserDocumentHash,
             };
 
             return response;

@@ -4,7 +4,9 @@ namespace Crypt.Service.DTO
     {
         public long Id { get; set; }
         public string UserDocument { get; set; } = string.Empty;
+        public string UserDocumentHash { get; set; } = string.Empty;
         public string CreditCardNumber { get; set; } = string.Empty;
+        public string CreditCardNumberHash { get; set; } = string.Empty;
         public long Value { get; set; }
     }
 }
